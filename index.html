@@ -20,18 +20,13 @@
       display: none;
     }
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       position: relative;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 60px; /* adjust this value to move the image lower */
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('https://raw.githubusercontent.com/mpatino2004/El-Toro-X/main/El%20Toro%20X%20Album%20Cover.jpg') center/cover no-repeat;
-      z-index: -1;
+      background: url('https://raw.githubusercontent.com/mpatino2004/El-Toro-X/main/El%20Toro%20X%20Album%20Cover.jpg') center 80px no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
     }
     .hero h2 {
       font-size: 0.8rem;
@@ -39,8 +34,7 @@
       padding: 0.4rem 0.8rem;
       border-radius: 6px;
       animation: fadeIn 2s ease-out;
-      position: relative;
-      top: 180px;
+      margin-top: 160px;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
