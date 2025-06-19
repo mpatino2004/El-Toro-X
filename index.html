@@ -5,53 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>El Toro X</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #111;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
       color: #fff;
+      overflow-x: hidden;
     }
     header {
-      background: #1a1a1a;
-      padding: 2rem;
-      text-align: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
     }
     header h1 {
-      margin: 0;
-      font-size: 3rem;
+      font-size: 2rem;
       color: #e63946;
     }
     .hero {
-      background: url('el-toro-x-hero.jpg') center/cover no-repeat;
-      height: 400px;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1518972559570-5f40c6fca3ec?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
+      padding: 2rem;
     }
     .hero h2 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       background: rgba(0,0,0,0.6);
       padding: 1rem 2rem;
       border-radius: 10px;
+      animation: fadeIn 2s ease-out;
     }
-    .bio, .music, .contact {
-      padding: 3rem 2rem;
-      max-width: 800px;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    section {
+      padding: 5rem 2rem;
+      max-width: 1000px;
       margin: 0 auto;
     }
     h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
       color: #f1c40f;
+    }
+    p, iframe {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
     }
     .music iframe {
       width: 100%;
-      height: 150px;
-      margin-top: 1rem;
+      height: 180px;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
     }
     footer {
-      background: #1a1a1a;
-      padding: 1rem;
+      background: #111;
       text-align: center;
-      color: #aaa;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.25;
     }
   </style>
 </head>
@@ -60,23 +97,27 @@
     <h1>El Toro X</h1>
   </header>
 
+  <video autoplay muted loop class="video-bg">
+    <source src="https://www.videvo.net/videvo_files/converted/2016_11/preview/160615A_Cactus_1080p.mp423264.webm" type="video/webm">
+  </video>
+
   <div class="hero">
     <h2>Desde Chihuahua para el mundo</h2>
   </div>
 
-  <section class="bio">
+  <section>
     <h2>Biografía</h2>
-    <p>El Toro X es una voz audaz y cruda desde el corazón de Chihuahua, México. Criado entre paisajes rudos y las realidades difíciles del norte, su música fusiona los corridos clásicos con la energía moderna del tumbado. Canta sobre el amor, la traición, la ambición y la lealtad, aportando un toque callejero y una profundidad emocional a cada tema. Su sonido es regional sin disculpas, pero con una resonancia global — un reflejo tanto de sus raíces como de su ascenso.</p>
+    <p>El Toro X es una voz audaz y cruda desde el corazón de Chihuahua, México. Criado entre paisajes rudos y realidades difíciles, fusiona los corridos clásicos con la energía moderna del tumbado. Canta sobre el amor, la traición, la ambición y la lealtad. Su sonido es auténtico, callejero, con alma y visión global.</p>
   </section>
 
   <section class="music">
     <h2>Música</h2>
-    <iframe src="https://open.spotify.com/embed/artist/artist-id" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <iframe src="https://open.spotify.com/embed/artist/artist-id" allowtransparency="true" allow="encrypted-media"></iframe>
   </section>
 
-  <section class="contact">
+  <section>
     <h2>Contacto</h2>
-    <p>Para contrataciones o colaboraciones, escribe a: <a href="mailto:eltoroxmusic@gmail.com">eltoroxmusic@gmail.com</a></p>
+    <p>Contrataciones y colaboraciones: <a href="mailto:eltoroxmusic@gmail.com" style="color:#f1c40f;">eltoroxmusic@gmail.com</a></p>
   </section>
 
   <footer>
