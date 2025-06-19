@@ -22,11 +22,20 @@
     .hero {
       min-height: 100vh;
       position: relative;
-      background: url('https://raw.githubusercontent.com/mpatino2004/El-Toro-X/main/El%20Toro%20X%20Album%20Cover.jpg') center 80px no-repeat;
-      background-size: cover;
       display: flex;
       justify-content: center;
       align-items: flex-start;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 80px; /* Moves image down by about an inch */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://raw.githubusercontent.com/mpatino2004/El-Toro-X/main/El%20Toro%20X%20Album%20Cover.jpg') center top no-repeat;
+      background-size: cover;
+      z-index: -1;
     }
     .hero h2 {
       font-size: 0.8rem;
