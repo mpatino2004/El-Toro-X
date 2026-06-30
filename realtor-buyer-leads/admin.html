@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buyer Leads Admin</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 2rem;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    .subtitle { color: #64748b; margin-bottom: 2rem; }
+    .toolbar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    button {
+      padding: 0.625rem 1.25rem;
+      background: #1a2b4a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    button:hover { background: #2a3f66; }
+    button.secondary { background: #c9a227; color: #1a2b4a; }
+    .stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: white;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .stat strong { display: block; font-size: 1.75rem; color: #1a2b4a; }
+    .stat span { font-size: 0.85rem; color: #64748b; }
+    table {
+      width: 100%;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 0.875rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+    }
+    th {
+      background: #1a2b4a;
+      color: white;
+      font-weight: 600;
+    }
+    tr:hover td { background: #f8fafc; }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-consultation { background: #dbeafe; color: #1d4ed8; }
+    .badge-guide { background: #d1fae5; color: #059669; }
+    .empty {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #64748b;
+    }
+    a { color: #1a2b4a; }
+  </style>
+</head>
+<body>
+  <h1>Buyer Leads</h1>
+  <p class="subtitle">Leads captured from your buyer landing page. <a href="index.html">← Back to site</a></p>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="toolbar">
+    <button class="secondary" onclick="exportLeads()">Export CSV</button>
+    <button onclick="refreshLeads()">Refresh</button>
+    <button onclick="clearLeads()" style="background:#dc2626;">Clear all leads</button>
+  </div>
+
+  <div id="table-wrap"></div>
+
+  <script src="js/app.js"></script>
+  <script>
+    const LEADS_KEY = 'realtor_buyer_leads';
+
+    function getLeads() {
+      try {
+        return JSON.parse(localStorage.getItem(LEADS_KEY) || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function formatDate(iso) {
+      return new Date(iso).toLocaleString();
+    }
+
+    function formatBudget(val) {
+      const map = {
+        'under-300k': 'Under $300k',
+        '300k-450k': '$300k–$450k',
+        '450k-600k': '$450k–$600k',
+        '600k-800k': '$600k–$800k',
+        '800k-plus': '$800k+'
+      };
+      return map[val] || val || '—';
+    }
+
+    function formatTimeline(val) {
+      const map = {
+        'asap': 'ASAP',
+        '3-6-months': '3–6 months',
+        '6-12-months': '6–12 months',
+        'exploring': 'Exploring'
+      };
+      return map[val] || val || '—';
+    }
+
+    function refreshLeads() {
+      const leads = getLeads().slice().reverse();
+      const consultation = leads.filter(l => l.source === 'buyer_consultation').length;
+      const guide = leads.filter(l => l.source === 'buyer_guide').length;
+
+      document.getElementById('stats').innerHTML = `
+        <div class="stat"><strong>${leads.length}</strong><span>Total leads</span></div>
+        <div class="stat"><strong>${consultation}</strong><span>Consultation requests</span></div>
+        <div class="stat"><strong>${guide}</strong><span>Guide downloads</span></div>
+      `;
+
+      const wrap = document.getElementById('table-wrap');
+      if (!leads.length) {
+        wrap.innerHTML = '<div class="empty"><p>No leads yet.</p><p>Share your landing page to start capturing buyer leads.</p></div>';
+        return;
+      }
+
+      wrap.innerHTML = `
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Source</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Budget</th>
+              <th>Timeline</th>
+              <th>Areas</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${leads.map(l => `
+              <tr>
+                <td>${formatDate(l.createdAt)}</td>
+                <td><span class="badge badge-${l.source === 'buyer_guide' ? 'guide' : 'consultation'}">${l.source === 'buyer_guide' ? 'Guide' : 'Consultation'}</span></td>
+                <td>${l.name || '—'}</td>
+                <td><a href="mailto:${l.email}">${l.email || '—'}</a></td>
+                <td>${l.phone ? '<a href="tel:' + l.phone.replace(/\D/g,'') + '">' + l.phone + '</a>' : '—'}</td>
+                <td>${formatBudget(l.budget)}</td>
+                <td>${formatTimeline(l.timeline)}</td>
+                <td>${l.areas || '—'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function clearLeads() {
+      if (confirm('Delete all stored leads? This cannot be undone.')) {
+        localStorage.removeItem(LEADS_KEY);
+        refreshLeads();
+      }
+    }
+
+    refreshLeads();
+  </script>
+</body>
+</html>
