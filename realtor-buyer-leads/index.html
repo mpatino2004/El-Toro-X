@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="First-time home buyer specialist. Get a free buyer consultation, mortgage estimate, and step-by-step guide to buying your first home.">
+  <title>First-Time Home Buyer Specialist | Free Buyer Consultation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" id="header-logo">Your Name</a>
+      <nav class="nav-desktop">
+        <a href="#calculator">Affordability</a>
+        <a href="#guide">Free Guide</a>
+        <a href="#process">How It Works</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#consultation" class="btn btn-primary btn-sm">Free Consultation</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-mobile" hidden>
+      <a href="#calculator">Affordability</a>
+      <a href="#guide">Free Guide</a>
+      <a href="#process">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#consultation">Free Consultation</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow" id="hero-eyebrow">Serving Your City buyers</span>
+          <h1>Buy your first home with confidence — not confusion</h1>
+          <p class="hero-sub">I help first-time buyers find the right home, understand financing, and win in competitive markets. No pressure. No jargon. Just a clear path to your keys.</p>
+          <ul class="hero-benefits">
+            <li>Free 30-minute buyer strategy call</li>
+            <li>Custom home search alerts in your budget</li>
+            <li>Step-by-step guidance from pre-approval to closing</li>
+          </ul>
+          <div class="hero-stats" id="hero-stats"></div>
+        </div>
+        <div class="hero-form-card" id="consultation">
+          <h2>Get matched with homes in your budget</h2>
+          <p class="form-note">Takes 60 seconds. I'll reach out within 24 hours.</p>
+          <form id="buyer-lead-form" class="lead-form">
+            <div class="form-row">
+              <label for="lead-name">Full name</label>
+              <input type="text" id="lead-name" name="name" required placeholder="Jane Smith" autocomplete="name">
+            </div>
+            <div class="form-row">
+              <label for="lead-email">Email</label>
+              <input type="email" id="lead-email" name="email" required placeholder="jane@email.com" autocomplete="email">
+            </div>
+            <div class="form-row">
+              <label for="lead-phone">Phone</label>
+              <input type="tel" id="lead-phone" name="phone" required placeholder="(555) 123-4567" autocomplete="tel">
+            </div>
+            <div class="form-row">
+              <label for="lead-budget">Target budget</label>
+              <select id="lead-budget" name="budget" required>
+                <option value="">Select range</option>
+                <option value="under-300k">Under $300,000</option>
+                <option value="300k-450k">$300,000 – $450,000</option>
+                <option value="450k-600k">$450,000 – $600,000</option>
+                <option value="600k-800k">$600,000 – $800,000</option>
+                <option value="800k-plus">$800,000+</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="lead-timeline">When do you want to buy?</label>
+              <select id="lead-timeline" name="timeline" required>
+                <option value="">Select timeline</option>
+                <option value="asap">ASAP (0–3 months)</option>
+                <option value="3-6-months">3–6 months</option>
+                <option value="6-12-months">6–12 months</option>
+                <option value="exploring">Just exploring</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="lead-areas">Preferred areas</label>
+              <input type="text" id="lead-areas" name="areas" placeholder="e.g. Downtown, Northside" list="area-suggestions">
+              <datalist id="area-suggestions"></datalist>
+            </div>
+            <div class="form-row checkbox-row">
+              <input type="checkbox" id="lead-preapproved" name="preapproved">
+              <label for="lead-preapproved">I'm already pre-approved for a mortgage</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send my buyer request</button>
+            <p class="form-disclaimer">By submitting, you agree to be contacted about homes and buyer resources. No spam.</p>
+          </form>
+          <div id="lead-form-success" class="form-success" hidden>
+            <div class="success-icon">✓</div>
+            <h3>You're on the list!</h3>
+            <p>I'll review your info and send personalized home matches and next steps shortly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="container trust-grid" id="trust-grid"></div>
+    </section>
+
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Affordability Calculator</span>
+          <h2>What can you actually afford?</h2>
+          <p>Get a realistic monthly payment estimate before you start touring homes.</p>
+        </div>
+        <div class="calculator-grid">
+          <form id="mortgage-form" class="calculator-form">
+            <div class="form-row">
+              <label for="calc-price">Home price</label>
+              <div class="input-prefix">
+                <span>$</span>
+                <input type="number" id="calc-price" value="400000" min="50000" step="5000">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="calc-down">Down payment</label>
+              <div class="input-suffix">
+                <input type="number" id="calc-down" value="20" min="0" max="100" step="1">
+                <span>%</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="calc-rate">Interest rate</label>
+              <div class="input-suffix">
+                <input type="number" id="calc-rate" value="6.5" min="1" max="15" step="0.125">
+                <span>%</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="calc-term">Loan term</label>
+              <select id="calc-term">
+                <option value="30">30 years</option>
+                <option value="15">15 years</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="calc-tax">Annual property tax</label>
+              <div class="input-prefix">
+                <span>$</span>
+                <input type="number" id="calc-tax" value="4800" min="0" step="100">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="calc-insurance">Annual insurance</label>
+              <div class="input-prefix">
+                <span>$</span>
+                <input type="number" id="calc-insurance" value="1800" min="0" step="100">
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="calc-hoa">Monthly HOA</label>
+              <div class="input-prefix">
+                <span>$</span>
+                <input type="number" id="calc-hoa" value="0" min="0" step="25">
+              </div>
+            </div>
+          </form>
+          <div class="calculator-results">
+            <div class="result-card primary">
+              <span class="result-label">Estimated monthly payment</span>
+              <span class="result-value" id="result-monthly">$0</span>
+            </div>
+            <div class="result-breakdown">
+              <div class="breakdown-row">
+                <span>Principal & interest</span>
+                <strong id="result-pi">$0</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Property tax</span>
+                <strong id="result-tax">$0</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>Insurance</span>
+                <strong id="result-insurance">$0</strong>
+              </div>
+              <div class="breakdown-row">
+                <span>HOA</span>
+                <strong id="result-hoa">$0</strong>
+              </div>
+              <div class="breakdown-row total">
+                <span>Loan amount</span>
+                <strong id="result-loan">$0</strong>
+              </div>
+            </div>
+            <div class="calculator-cta">
+              <p>Want homes in this payment range?</p>
+              <button type="button" class="btn btn-secondary btn-block" id="calc-cta-btn">Get my custom home search</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="guide">
+      <div class="container guide-grid">
+        <div class="guide-content">
+          <span class="eyebrow">Free Download</span>
+          <h2>The First-Time Buyer's Roadmap</h2>
+          <p>A plain-English guide covering everything most agents forget to explain upfront:</p>
+          <ul class="guide-list">
+            <li>How much you really need for down payment & closing costs</li>
+            <li>Pre-approval vs. pre-qualification (and why it matters)</li>
+            <li>How to compete when there are multiple offers</li>
+            <li>Inspection, appraisal, and closing — what to expect</li>
+            <li>First-time buyer programs you might qualify for</li>
+          </ul>
+        </div>
+        <div class="guide-form-card">
+          <h3>Download the free guide</h3>
+          <form id="guide-form" class="lead-form">
+            <div class="form-row">
+              <label for="guide-name">Name</label>
+              <input type="text" id="guide-name" name="name" required placeholder="Your name">
+            </div>
+            <div class="form-row">
+              <label for="guide-email">Email</label>
+              <input type="email" id="guide-email" name="email" required placeholder="your@email.com">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send me the guide</button>
+          </form>
+          <div id="guide-success" class="form-success compact" hidden>
+            <div class="success-icon">✓</div>
+            <h3>Check your inbox!</h3>
+            <p>Your guide is ready. <a href="buyer-guide.html" target="_blank" id="guide-direct-link">Open it now</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Simple Process</span>
+          <h2>From "I want to buy" to "Here's your keys"</h2>
+        </div>
+        <div class="process-steps">
+          <article class="step">
+            <span class="step-num">01</span>
+            <h3>Strategy call</h3>
+            <p>We clarify your budget, must-haves, and timeline. I'll connect you with trusted lenders if you need pre-approval.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">02</span>
+            <h3>Curated home search</h3>
+            <p>You get alerts for homes that actually fit — not every listing in the MLS. We tour only the ones worth your time.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">03</span>
+            <h3>Offer & negotiation</h3>
+            <p>I structure offers to win while protecting you. We handle counteroffers, inspection items, and appraisal issues.</p>
+          </article>
+          <article class="step">
+            <span class="step-num">04</span>
+            <h3>Close with confidence</h3>
+            <p>I manage the timeline, paperwork, and walkthrough so closing day is exciting — not stressful.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Why Buyers Choose Me</span>
+          <h2>Built for first-time buyers</h2>
+        </div>
+        <div class="features-grid">
+          <article class="feature">
+            <div class="feature-icon">🏠</div>
+            <h3>No pressure tours</h3>
+            <p>I'll never push you into a home that doesn't fit your budget or lifestyle.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">📊</div>
+            <h3>Data-driven advice</h3>
+            <p>Comparable sales, market trends, and offer strategy — not guesswork.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">🤝</div>
+            <h3>Trusted vendor network</h3>
+            <p>Lenders, inspectors, and attorneys I've vetted for first-time buyers.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon">📱</div>
+            <h3>Fast communication</h3>
+            <p>Texts, calls, and updates when homes hit the market — because speed wins.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">FAQ</span>
+          <h2>Common first-time buyer questions</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>How much do I need for a down payment?</summary>
+            <p>Many first-time buyers put down 3–10%, not 20%. FHA loans start at 3.5% down. We'll review programs you may qualify for during your consultation.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need to be pre-approved before we look at homes?</summary>
+            <p>Not always, but pre-approval makes your offers stronger and helps us search in the right price range. I can recommend lenders who work well with first-time buyers.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who pays the realtor commission?</summary>
+            <p>Commission structures vary by market and transaction. As your buyer's agent, my job is to represent your interests — we'll discuss how compensation works in your area on our first call.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How long does it take to buy a home?</summary>
+            <p>From accepted offer to closing, expect 30–45 days. Finding the right home can take a few weeks to a few months depending on your criteria and market conditions.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if I lose a bidding war?</summary>
+            <p>It happens in competitive markets. We'll adjust strategy — offer structure, timing, or neighborhoods — until we find the right fit. Patience and preparation win.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container cta-box">
+        <h2>Ready to start your home search?</h2>
+        <p>Book a free buyer consultation. No obligation — just a clear plan for your first home.</p>
+        <a href="#consultation" class="btn btn-primary btn-lg">Get started free</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <strong id="footer-name">Your Name</strong>
+        <span id="footer-brokerage">Your Brokerage</span>
+        <span id="footer-license">DRE #00000000</span>
+      </div>
+      <div class="footer-contact">
+        <a id="footer-phone" href="tel:+15551234567">(555) 123-4567</a>
+        <a id="footer-email" href="mailto:you@yourbrokerage.com">you@yourbrokerage.com</a>
+      </div>
+      <div class="footer-legal">
+        <p>&copy; <span id="footer-year"></span> <span id="footer-name-copy">Your Name</span>. All rights reserved.</p>
+        <p class="fine-print">Equal Housing Opportunity. Not intended to solicit properties already listed. All info deemed reliable but not guaranteed.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
